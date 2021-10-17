@@ -5,7 +5,7 @@ import UIKit
 /// Object that facilitates the creation of skeleton layers for multiline
 /// elements, based on the builder pattern
 class SkeletonMultilineLayerBuilder {
-    
+
     var skeletonType: SkeletonType?
     var index: Int?
     var height: CGFloat?
@@ -15,6 +15,7 @@ class SkeletonMultilineLayerBuilder {
     var paddingInsets: UIEdgeInsets = .zero
     var alignment: NSTextAlignment = .natural
     var isRTL: Bool = false
+    var containerHeight: CGFloat = 0
 
     @discardableResult
     func setSkeletonType(_ type: SkeletonType) -> SkeletonMultilineLayerBuilder {
@@ -27,13 +28,13 @@ class SkeletonMultilineLayerBuilder {
         self.index = index
         return self
     }
-    
+
     @discardableResult
     func setHeight(_ height: CGFloat) -> SkeletonMultilineLayerBuilder {
         self.height = height
         return self
     }
-    
+
     @discardableResult
     func setWidth(_ width: CGFloat) -> SkeletonMultilineLayerBuilder {
         self.width = width
@@ -63,10 +64,16 @@ class SkeletonMultilineLayerBuilder {
         self.alignment = alignment
         return self
     }
-    
+
     @discardableResult
     func setIsRTL(_ isRTL: Bool) -> SkeletonMultilineLayerBuilder {
         self.isRTL = isRTL
+        return self
+    }
+
+    @discardableResult
+    func setContainerHeight(_ height: CGFloat) -> SkeletonMultilineLayerBuilder {
+        self.containerHeight = height
         return self
     }
 
@@ -87,12 +94,13 @@ class SkeletonMultilineLayerBuilder {
                                multilineSpacing: multilineSpacing,
                                paddingInsets: paddingInsets,
                                alignment: alignment,
-                               isRTL: isRTL)
+                               isRTL: isRTL,
+                               containerHeight: containerHeight)
 
         layer.cornerRadius = CGFloat(radius)
         layer.masksToBounds = true
 
         return layer
     }
-    
+
 }

@@ -12,7 +12,7 @@
         <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SkeletonViewExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,20 +50,23 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJW-A4-Fb8">
-                                        <rect key="frame" x="166" y="27" width="166" height="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJW-A4-Fb8">
+                                        <rect key="frame" x="166" y="27" width="26.333333333333343" height="12"/>
                                         <color key="backgroundColor" red="0.92156862750000001" green="0.16862745100000001" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="skeletonLineSpacing">
-                                                <real key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLc-Vq-zi4">
+                                        <rect key="frame" x="200" y="22" width="35.333333333333343" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
@@ -74,11 +77,12 @@
                                     <constraint firstItem="e9V-mk-xH0" firstAttribute="centerX" secondItem="F9K-jU-100" secondAttribute="centerX" constant="1" id="KcB-tG-NXa"/>
                                     <constraint firstAttribute="height" constant="243" id="MIj-xq-gr1"/>
                                     <constraint firstItem="nMj-pU-5wJ" firstAttribute="leading" secondItem="F9K-jU-100" secondAttribute="leading" constant="45" id="TK6-Ws-2xY"/>
+                                    <constraint firstItem="QLc-Vq-zi4" firstAttribute="bottom" secondItem="CJW-A4-Fb8" secondAttribute="bottom" id="UU9-HD-fkZ"/>
                                     <constraint firstItem="e9V-mk-xH0" firstAttribute="top" secondItem="F9K-jU-100" secondAttribute="top" constant="142" id="Wcx-nZ-1lR"/>
                                     <constraint firstAttribute="trailing" secondItem="e9V-mk-xH0" secondAttribute="trailing" constant="43" id="XbU-Og-rht"/>
                                     <constraint firstItem="CJW-A4-Fb8" firstAttribute="top" secondItem="F9K-jU-100" secondAttribute="top" constant="27" id="ceh-gB-7Et"/>
                                     <constraint firstItem="nMj-pU-5wJ" firstAttribute="top" secondItem="F9K-jU-100" secondAttribute="top" constant="20" id="hQL-cr-MaN"/>
-                                    <constraint firstAttribute="trailing" secondItem="CJW-A4-Fb8" secondAttribute="trailing" constant="43" id="nfT-a5-z36"/>
+                                    <constraint firstItem="QLc-Vq-zi4" firstAttribute="leading" secondItem="CJW-A4-Fb8" secondAttribute="trailing" constant="7.6699999999999999" id="v9F-NS-ZEp"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -88,7 +92,7 @@
                                 <rect key="frame" x="0.0" y="287" width="375" height="282"/>
                                 <color key="separatorColor" red="0.1061807256" green="0.84678786989999999" blue="0.031482450150000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellIdentifier" rowHeight="120" id="2dN-Bd-tdy" customClass="Cell" customModule="SkeletonViewExample" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellIdentifier" rowHeight="120" id="2dN-Bd-tdy" customClass="Cell" customModule="iOS_Example" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2dN-Bd-tdy" id="7IN-F3-Mr6">
@@ -162,10 +166,6 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Hxi-nC-gbY"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Z10-Nx-iGb"/>
-                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgY-1a-UGc">
                                 <rect key="frame" x="0.0" y="569" width="375" height="160"/>
@@ -284,6 +284,8 @@
                     <connections>
                         <outlet property="avatarImage" destination="nMj-pU-5wJ" id="9fa-Z7-vYi"/>
                         <outlet property="colorSelectedView" destination="iGp-rp-t1d" id="0Zm-9d-jRU"/>
+                        <outlet property="lbl" destination="CJW-A4-Fb8" id="hEz-BP-MyO"/>
+                        <outlet property="lbl1" destination="QLc-Vq-zi4" id="6XM-0g-kOu"/>
                         <outlet property="showOrHideSkeletonButton" destination="Tdu-YQ-saq" id="gkm-mB-zYD"/>
                         <outlet property="skeletonTypeSelector" destination="xOL-Sq-r4i" id="yTr-8L-I4Y"/>
                         <outlet property="switchAnimated" destination="vz0-qg-GcZ" id="d2R-8x-lRb"/>

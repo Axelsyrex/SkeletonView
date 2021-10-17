@@ -8,6 +8,12 @@
 
 import UIKit
 
+/// Enum describing to which vertical border the skeleton layer will be pinned
+public enum SkeletonLayerVerticaBorderPin {
+    case top
+    case bottom
+}
+
 struct SkeletonLayer {
     
     private var maskLayer: CALayer

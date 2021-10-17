@@ -36,6 +36,7 @@ public class SkeletonViewAppearance {
     public var multilineCornerRadius: Int = 0
 
     public var renderSingleLineAsView: Bool = false
-    
+
+    public var verticalBorderPin: SkeletonLayerVerticaBorderPin = .top
 }
 // codebeat:enable[TOO_MANY_IVARS]
