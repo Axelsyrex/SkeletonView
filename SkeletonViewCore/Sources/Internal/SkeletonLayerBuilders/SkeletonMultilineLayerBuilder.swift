@@ -16,6 +16,8 @@ class SkeletonMultilineLayerBuilder {
     var alignment: NSTextAlignment = .natural
     var isRTL: Bool = false
     var containerHeight: CGFloat = 0
+    var verticalBorderPin: SkeletonLayerVerticaBorderPin = .top
+    var totalLines: Int = 0
 
     @discardableResult
     func setSkeletonType(_ type: SkeletonType) -> SkeletonMultilineLayerBuilder {
@@ -77,6 +79,18 @@ class SkeletonMultilineLayerBuilder {
         return self
     }
 
+    @discardableResult
+    func setVerticalBorderPin(_ verticalBorderPin: SkeletonLayerVerticaBorderPin) -> SkeletonMultilineLayerBuilder {
+        self.verticalBorderPin = verticalBorderPin
+        return self
+    }
+
+    @discardableResult
+    func setTotalLines(_ totalLines: Int) -> SkeletonMultilineLayerBuilder {
+        self.totalLines = totalLines
+        return self
+    }
+
     func build() -> CALayer? {
         guard let type = skeletonType,
               let index = index,
@@ -89,13 +103,14 @@ class SkeletonMultilineLayerBuilder {
         layer.anchorPoint = .zero
         layer.name = CALayer.Constants.skeletonSubLayersName
         layer.updateLayerFrame(for: index,
-                               totalLines: layer.skeletonSublayers.count,
+                               totalLines: totalLines,
                                size: CGSize(width: width, height: height),
                                multilineSpacing: multilineSpacing,
                                paddingInsets: paddingInsets,
                                alignment: alignment,
                                isRTL: isRTL,
-                               containerHeight: containerHeight)
+                               containerHeight: containerHeight,
+                               verticalBorderPin: verticalBorderPin)
 
         layer.cornerRadius = CGFloat(radius)
         layer.masksToBounds = true

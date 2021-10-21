@@ -106,10 +106,10 @@ private extension CALayer {
         return newRect
     }
     
-    func calculatedWidthForLine(at index: Int, totalLines: Int, lastLineFillPercent: Int, paddingInsets: UIEdgeInsets) -> CGFloat {
+    func calculatedWidthForLine(at index: Int, totalLines: Int, lastLineFillPercent: Int, paddingInsets: UIEdgeInsets, verticalBorderPin: SkeletonLayerVerticaBorderPin) -> CGFloat {
         let isLastIndex: Bool
-        switch SkeletonViewAppearance.shared.verticalBorderPin {
-        case .top:
+        switch verticalBorderPin {
+        case .top, .center:
             isLastIndex = index == totalLines - 1
         case .bottom:
             isLastIndex = index == 0
@@ -162,9 +162,15 @@ extension CALayer {
             .setAlignment(config.alignment)
             .setIsRTL(config.isRTL)
             .setContainerHeight(bounds.height)
+            .setVerticalBorderPin(config.verticalBorderPin)
+            .setTotalLines(numberOfSublayers)
 
         (0..<numberOfSublayers).forEach { index in
-            let width = calculatedWidthForLine(at: index, totalLines: numberOfSublayers, lastLineFillPercent: config.lastLineFillPercent, paddingInsets: config.paddingInsets)
+            let width = calculatedWidthForLine(at: index,
+                                               totalLines: numberOfSublayers,
+                                               lastLineFillPercent: config.lastLineFillPercent,
+                                               paddingInsets: config.paddingInsets,
+                                               verticalBorderPin: config.verticalBorderPin)
             if let layer = layerBuilder
                 .setIndex(index)
                 .setWidth(width)
@@ -181,13 +187,14 @@ extension CALayer {
         let paddingInsets = config.calculatedPaddingInsets
         let multilineSpacing = config.multilineSpacing
         var height = config.lineHeight
+        let verticalBorderPin = config.verticalBorderPin
 
         if numberOfSublayers == 1 && SkeletonAppearance.default.renderSingleLineAsView {
             height = bounds.height
         }
 
         for (index, layer) in currentSkeletonSublayers.enumerated() {
-            let width = calculatedWidthForLine(at: index, totalLines: numberOfSublayers, lastLineFillPercent: lastLineFillPercent, paddingInsets: paddingInsets)
+            let width = calculatedWidthForLine(at: index, totalLines: numberOfSublayers, lastLineFillPercent: lastLineFillPercent, paddingInsets: paddingInsets, verticalBorderPin: verticalBorderPin)
             layer.updateLayerFrame(for: index,
                                    totalLines: numberOfSublayers,
                                    size: CGSize(width: width, height: height),
@@ -195,20 +202,32 @@ extension CALayer {
                                    paddingInsets: paddingInsets,
                                    alignment: config.alignment,
                                    isRTL: config.isRTL,
-                                   containerHeight: bounds.height
+                                   containerHeight: bounds.height,
+                                   verticalBorderPin: verticalBorderPin
             )
         }
     }
 
-    func updateLayerFrame(for index: Int, totalLines: Int, size: CGSize, multilineSpacing: CGFloat, paddingInsets: UIEdgeInsets, alignment: NSTextAlignment, isRTL: Bool, containerHeight: CGFloat) {
+    func updateLayerFrame(for index: Int,
+                          totalLines: Int,
+                          size: CGSize,
+                          multilineSpacing: CGFloat,
+                          paddingInsets: UIEdgeInsets,
+                          alignment: NSTextAlignment,
+                          isRTL: Bool,
+                          containerHeight: CGFloat,
+                          verticalBorderPin: SkeletonLayerVerticaBorderPin) {
         let spaceRequiredForEachLine = size.height + multilineSpacing
-        let verticalBorderPin = SkeletonViewAppearance.shared.verticalBorderPin
         let originY: CGFloat
         switch verticalBorderPin {
         case .bottom:
             originY = containerHeight - size.height - spaceRequiredForEachLine * CGFloat(index) - paddingInsets.top
         case .top:
             originY = CGFloat(index) * spaceRequiredForEachLine + paddingInsets.top
+        case .center:
+            let totalLinesHeight = spaceRequiredForEachLine * CGFloat(max(totalLines, 1)) - multilineSpacing
+            let centerPadding = (containerHeight - totalLinesHeight) / 2
+            originY = centerPadding + CGFloat(index) * spaceRequiredForEachLine
         }
 
         let newFrame = CGRect(x: paddingInsets.left,

@@ -19,5 +19,9 @@ public extension UITextView {
         get { return paddingInsets }
         set { paddingInsets = newValue }
     }
-    
+
+    var skeletonVerticalBorderPin: SkeletonLayerVerticaBorderPin {
+        get { return verticalBorderPin }
+        set { verticalBorderPin = newValue }
+    }
 }

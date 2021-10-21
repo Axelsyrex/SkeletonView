@@ -23,6 +23,7 @@ protocol SkeletonTextNode {
     var multilineSpacing: CGFloat { get }
     var paddingInsets: UIEdgeInsets { get }
     var usesTextHeightForLines: Bool { get }
+    var verticalBorderPin: SkeletonLayerVerticaBorderPin { get }
 }
 
 enum SkeletonTextNodeAssociatedKeys {
@@ -33,7 +34,7 @@ enum SkeletonTextNodeAssociatedKeys {
     static var paddingInsets = "paddingInsets"
     static var backupHeightConstraints = "backupHeightConstraints"
     static var usesTextHeightForLines = "usesTextHeightForLines"
-    
+    static var verticalBorderPin = "verticalBorderPin"
 }
 
 extension UILabel: SkeletonTextNode {
@@ -78,7 +79,11 @@ extension UILabel: SkeletonTextNode {
         get { return ao_get(pkey: &SkeletonTextNodeAssociatedKeys.backupHeightConstraints) as? [NSLayoutConstraint] ?? [] }
         set { ao_set(newValue, pkey: &SkeletonTextNodeAssociatedKeys.backupHeightConstraints) }
     }
-    
+
+    var verticalBorderPin: SkeletonLayerVerticaBorderPin {
+        get { return ao_get(pkey: &SkeletonTextNodeAssociatedKeys.verticalBorderPin) as? SkeletonLayerVerticaBorderPin ?? .top }
+        set { ao_set(newValue, pkey: &SkeletonTextNodeAssociatedKeys.verticalBorderPin) }
+    }
 }
 
 extension UITextView: SkeletonTextNode {
@@ -128,5 +133,9 @@ extension UITextView: SkeletonTextNode {
         get { return ao_get(pkey: &SkeletonTextNodeAssociatedKeys.paddingInsets) as? UIEdgeInsets ?? .zero }
         set { ao_set(newValue, pkey: &SkeletonTextNodeAssociatedKeys.paddingInsets) }
     }
-    
+
+    var verticalBorderPin: SkeletonLayerVerticaBorderPin {
+        get { return ao_get(pkey: &SkeletonTextNodeAssociatedKeys.verticalBorderPin) as? SkeletonLayerVerticaBorderPin ?? .top }
+        set { ao_set(newValue, pkey: &SkeletonTextNodeAssociatedKeys.verticalBorderPin) }
+    }
 }
