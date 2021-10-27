@@ -21,6 +21,7 @@ protocol SkeletonTextNode {
     var lastLineFillingPercent: Int { get }
     var multilineCornerRadius: Int { get }
     var multilineSpacing: CGFloat { get }
+    var manualMultilineHeight: CGFloat { get }
     var paddingInsets: UIEdgeInsets { get }
     var usesTextHeightForLines: Bool { get }
     var verticalBorderPin: SkeletonLayerVerticaBorderPin { get }
@@ -31,6 +32,7 @@ enum SkeletonTextNodeAssociatedKeys {
     static var lastLineFillingPercent = "lastLineFillingPercent"
     static var multilineCornerRadius = "multilineCornerRadius"
     static var multilineSpacing = "multilineSpacing"
+    static var multilineHeight = "multilineHeight"
     static var paddingInsets = "paddingInsets"
     static var backupHeightConstraints = "backupHeightConstraints"
     static var usesTextHeightForLines = "usesTextHeightForLines"
@@ -40,7 +42,7 @@ enum SkeletonTextNodeAssociatedKeys {
 extension UILabel: SkeletonTextNode {
     
     var lineHeight: CGFloat {
-        let constraintsLineHeight = backupHeightConstraints.first?.constant ?? SkeletonAppearance.default.multilineHeight
+        let constraintsLineHeight = backupHeightConstraints.first?.constant ?? manualMultilineHeight
         
         if useFontLineHeight,
            let fontLineHeight = font?.lineHeight {
@@ -68,6 +70,11 @@ extension UILabel: SkeletonTextNode {
     var multilineSpacing: CGFloat {
         get { return ao_get(pkey: &SkeletonTextNodeAssociatedKeys.multilineSpacing) as? CGFloat ?? SkeletonAppearance.default.multilineSpacing }
         set { ao_set(newValue, pkey: &SkeletonTextNodeAssociatedKeys.multilineSpacing) }
+    }
+
+    var manualMultilineHeight: CGFloat {
+        get { return ao_get(pkey: &SkeletonTextNodeAssociatedKeys.multilineHeight) as? CGFloat ?? SkeletonAppearance.default.multilineHeight }
+        set { ao_set(newValue, pkey: &SkeletonTextNodeAssociatedKeys.multilineHeight) }
     }
 
     var paddingInsets: UIEdgeInsets {
@@ -127,6 +134,11 @@ extension UITextView: SkeletonTextNode {
     var multilineSpacing: CGFloat {
         get { return ao_get(pkey: &SkeletonTextNodeAssociatedKeys.multilineSpacing) as? CGFloat ?? SkeletonAppearance.default.multilineSpacing }
         set { ao_set(newValue, pkey: &SkeletonTextNodeAssociatedKeys.multilineSpacing) }
+    }
+
+    var manualMultilineHeight: CGFloat {
+        get { return ao_get(pkey: &SkeletonTextNodeAssociatedKeys.multilineHeight) as? CGFloat ?? SkeletonAppearance.default.multilineHeight }
+        set { ao_set(newValue, pkey: &SkeletonTextNodeAssociatedKeys.multilineHeight) }
     }
 
     var paddingInsets: UIEdgeInsets {

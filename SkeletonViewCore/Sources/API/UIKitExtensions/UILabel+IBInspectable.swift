@@ -38,5 +38,11 @@ public extension UILabel {
         get { usesTextHeightForLines }
         set { usesTextHeightForLines = newValue }
     }
+
+    @IBInspectable
+    var multilineHeight: CGFloat {
+        get { return manualMultilineHeight }
+        set { manualMultilineHeight = newValue }
+    }
     
 }
