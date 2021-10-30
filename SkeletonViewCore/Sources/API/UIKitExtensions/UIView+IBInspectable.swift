@@ -38,5 +38,11 @@ public extension UIView {
         get { _skeletonableCornerRadius }
         set { _skeletonableCornerRadius = newValue }
     }
-    
+
+    @IBInspectable
+    var skeletonableTintColor: UIColor? {
+        get { _skeletonableTintColor }
+        set { _skeletonableTintColor = newValue }
+    }
+
 }

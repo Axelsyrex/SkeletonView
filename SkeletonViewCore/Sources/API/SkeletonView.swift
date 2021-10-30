@@ -21,7 +21,7 @@ public extension UIView {
     ///   - transition: The style of the transition when the skeleton appears. Defaults to `.crossDissolve(0.25)`.
     func showSkeleton(usingColor color: UIColor = SkeletonAppearance.default.tintColor, transition: SkeletonTransitionStyle = .crossDissolve(0.25)) {
         _delayedShowSkeletonWorkItem?.cancel()
-        let config = SkeletonConfig(type: .solid, colors: [color], transition: transition)
+        let config = SkeletonConfig(type: .solid, colors: [skeletonableTintColor ?? color], transition: transition)
         showSkeleton(skeletonConfig: config)
     }
     
@@ -34,9 +34,10 @@ public extension UIView {
     ///   - transition: The style of the transition when the skeleton appears. Defaults to `.crossDissolve(0.25)`.
     func showSkeleton(usingColor color: UIColor = SkeletonAppearance.default.tintColor, animated: Bool = true, delay: TimeInterval, transition: SkeletonTransitionStyle = .crossDissolve(0.25)) {
         _delayedShowSkeletonWorkItem?.cancel()
-        
+
+        let colors = [skeletonableTintColor ?? color]
         _delayedShowSkeletonWorkItem = DispatchWorkItem { [weak self] in
-            let config = SkeletonConfig(type: .solid, colors: [color], animated: animated, transition: transition)
+            let config = SkeletonConfig(type: .solid, colors: colors, animated: animated, transition: transition)
             self?.showSkeleton(skeletonConfig: config)
         }
         
@@ -87,7 +88,7 @@ public extension UIView {
     ///   - transition: The style of the transition when the skeleton appears. Defaults to `.crossDissolve(0.25)`.
     func showAnimatedSkeleton(usingColor color: UIColor = SkeletonAppearance.default.tintColor, animation: SkeletonLayerAnimation? = nil, transition: SkeletonTransitionStyle = .crossDissolve(0.25)) {
         _delayedShowSkeletonWorkItem?.cancel()
-        let config = SkeletonConfig(type: .solid, colors: [color], animated: true, animation: animation, transition: transition)
+        let config = SkeletonConfig(type: .solid, colors: [skeletonableTintColor ?? color], animated: true, animation: animation, transition: transition)
         showSkeleton(skeletonConfig: config)
     }
     
@@ -106,7 +107,7 @@ public extension UIView {
     }
 
     func updateSkeleton(usingColor color: UIColor = SkeletonAppearance.default.tintColor) {
-        let config = SkeletonConfig(type: .solid, colors: [color])
+        let config = SkeletonConfig(type: .solid, colors: [skeletonableTintColor ?? color])
         updateSkeleton(skeletonConfig: config)
     }
 
@@ -116,7 +117,7 @@ public extension UIView {
     }
 
     func updateAnimatedSkeleton(usingColor color: UIColor = SkeletonAppearance.default.tintColor, animation: SkeletonLayerAnimation? = nil) {
-        let config = SkeletonConfig(type: .solid, colors: [color], animated: true, animation: animation)
+        let config = SkeletonConfig(type: .solid, colors: [skeletonableTintColor ?? color], animated: true, animation: animation)
         updateSkeleton(skeletonConfig: config)
     }
 

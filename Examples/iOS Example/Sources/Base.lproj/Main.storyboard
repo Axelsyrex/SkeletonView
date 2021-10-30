@@ -37,6 +37,9 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
                                                 <integer key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="skeletonableTintColor">
+                                                <color key="value" systemColor="systemOrangeColor"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="nMj-pU-5wJ">
@@ -50,39 +53,30 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJW-A4-Fb8">
-                                        <rect key="frame" x="166" y="27" width="26.333333333333343" height="12"/>
-                                        <color key="backgroundColor" red="0.92156862750000001" green="0.16862745100000001" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3x-eC-tDU">
+                                        <rect key="frame" x="160" y="20" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLc-Vq-zi4">
-                                        <rect key="frame" x="200" y="22" width="35.333333333333343" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="skeletonableTintColor">
+                                                <color key="value" systemColor="systemOrangeColor"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="CJW-A4-Fb8" firstAttribute="leading" secondItem="nMj-pU-5wJ" secondAttribute="trailing" constant="28" id="Drg-cD-6E8"/>
                                     <constraint firstItem="e9V-mk-xH0" firstAttribute="leading" secondItem="F9K-jU-100" secondAttribute="leading" constant="45" id="HvQ-HY-zYU"/>
+                                    <constraint firstItem="R3x-eC-tDU" firstAttribute="leading" secondItem="nMj-pU-5wJ" secondAttribute="trailing" constant="22" id="I4f-jh-oPG"/>
                                     <constraint firstItem="e9V-mk-xH0" firstAttribute="centerX" secondItem="F9K-jU-100" secondAttribute="centerX" constant="1" id="KcB-tG-NXa"/>
                                     <constraint firstAttribute="height" constant="243" id="MIj-xq-gr1"/>
                                     <constraint firstItem="nMj-pU-5wJ" firstAttribute="leading" secondItem="F9K-jU-100" secondAttribute="leading" constant="45" id="TK6-Ws-2xY"/>
-                                    <constraint firstItem="QLc-Vq-zi4" firstAttribute="bottom" secondItem="CJW-A4-Fb8" secondAttribute="bottom" id="UU9-HD-fkZ"/>
                                     <constraint firstItem="e9V-mk-xH0" firstAttribute="top" secondItem="F9K-jU-100" secondAttribute="top" constant="142" id="Wcx-nZ-1lR"/>
                                     <constraint firstAttribute="trailing" secondItem="e9V-mk-xH0" secondAttribute="trailing" constant="43" id="XbU-Og-rht"/>
-                                    <constraint firstItem="CJW-A4-Fb8" firstAttribute="top" secondItem="F9K-jU-100" secondAttribute="top" constant="27" id="ceh-gB-7Et"/>
+                                    <constraint firstItem="R3x-eC-tDU" firstAttribute="top" secondItem="nMj-pU-5wJ" secondAttribute="top" id="bqD-fr-Dvv"/>
                                     <constraint firstItem="nMj-pU-5wJ" firstAttribute="top" secondItem="F9K-jU-100" secondAttribute="top" constant="20" id="hQL-cr-MaN"/>
-                                    <constraint firstItem="QLc-Vq-zi4" firstAttribute="leading" secondItem="CJW-A4-Fb8" secondAttribute="trailing" constant="7.6699999999999999" id="v9F-NS-ZEp"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -284,8 +278,7 @@
                     <connections>
                         <outlet property="avatarImage" destination="nMj-pU-5wJ" id="9fa-Z7-vYi"/>
                         <outlet property="colorSelectedView" destination="iGp-rp-t1d" id="0Zm-9d-jRU"/>
-                        <outlet property="lbl" destination="CJW-A4-Fb8" id="hEz-BP-MyO"/>
-                        <outlet property="lbl1" destination="QLc-Vq-zi4" id="6XM-0g-kOu"/>
+                        <outlet property="lbl" destination="R3x-eC-tDU" id="02e-9g-v1Q"/>
                         <outlet property="showOrHideSkeletonButton" destination="Tdu-YQ-saq" id="gkm-mB-zYD"/>
                         <outlet property="skeletonTypeSelector" destination="xOL-Sq-r4i" id="yTr-8L-I4Y"/>
                         <outlet property="switchAnimated" destination="vz0-qg-GcZ" id="d2R-8x-lRb"/>
@@ -341,6 +334,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

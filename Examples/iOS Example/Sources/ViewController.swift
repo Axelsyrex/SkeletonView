@@ -55,7 +55,6 @@ class ViewController: UIViewController {
         tableview.isSkeletonable = true
         transitionDurationStepper.value = 0.25
         SkeletonAppearance.default.multilineHeight = 10
-        SkeletonAppearance.default.verticalBorderPin = .bottom
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -67,9 +66,9 @@ class ViewController: UIViewController {
 
         lbl.useFontLineHeight = false
 
-        lbl1.showSkeleton()
-        lbl1.lastLineFillPercent = 100
-        lbl1.useFontLineHeight = false
+//        lbl1.showSkeleton()
+//        lbl1.lastLineFillPercent = 100
+//        lbl1.useFontLineHeight = false
     }
 
     @IBAction func changeAnimated(_ sender: Any) {
@@ -179,5 +178,49 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return colors[row].1
+    }
+}
+
+extension ViewController: SkeletonTableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "CellIdentifier"
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath) as! Cell
+        cell.label1.text = "cell -> \(indexPath.row)"
+        return cell
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell? {
+        let cell = skeletonView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath) as? Cell
+        cell?.textField.isHidden = indexPath.row == 0
+        return cell
+    }
+
+    func collectionSkeletonView(_ skeletonView: UITableView, prepareCellForSkeleton cell: UITableViewCell, at indexPath: IndexPath) {
+        let cell = cell as? Cell
+        cell?.textField.isHidden = indexPath.row == 0
+    }
+}
+
+extension ViewController: SkeletonTableViewDelegate {
+    func collectionSkeletonView(_ skeletonView: UITableView, identifierForHeaderInSection section: Int) -> ReusableHeaderFooterIdentifier? {
+        return "HeaderIdentifier"
+    }
+
+    func collectionSkeletonView(_ skeletonView: UITableView, identifierForFooterInSection section: Int) -> ReusableHeaderFooterIdentifier? {
+        return "FooterIdentifier"
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = tableView
+            .dequeueReusableHeaderFooterView(withIdentifier: "FooterIdentifier") as! HeaderFooterSection
+        footer.titleLabel.text = "footer -> \(section)"
+        return footer
     }
 }
