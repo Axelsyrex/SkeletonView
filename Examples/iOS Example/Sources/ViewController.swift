@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 //        view.showAnimatedSkeleton()
-        lbl.showSkeleton()
+
         lbl.lastLineFillPercent = 100
 //        lbl.multilineHeight = 20
 
@@ -69,6 +69,7 @@ class ViewController: UIViewController {
 //        lbl1.showSkeleton()
 //        lbl1.lastLineFillPercent = 100
 //        lbl1.useFontLineHeight = false
+        self.view.showAnimatedSkeleton()
     }
 
     @IBAction func changeAnimated(_ sender: Any) {

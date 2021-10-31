@@ -82,6 +82,15 @@ private extension UIView {
             isHidden = true
         }
         guard isSkeletonable && !sk.isSkeletonActive else { return }
+        var config = config
+        if let skeletonableTintColor = skeletonableTintColor {
+            switch config.type {
+            case .solid:
+                config.colors = [skeletonableTintColor]
+            case .gradient:
+                config.colors = SkeletonGradient(baseColor: skeletonableTintColor).colors
+            }
+        }
         _currentSkeletonConfig = config
         swizzleLayoutSubviews()
         swizzleTraitCollectionDidChange()
