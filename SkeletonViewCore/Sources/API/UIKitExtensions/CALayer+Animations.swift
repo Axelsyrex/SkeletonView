@@ -21,7 +21,7 @@ public extension CALayer {
         
         // swiftlint:disable:next force_unwrapping
         pulseAnimation.toValue = UIColor(cgColor: backgroundColor!).complementaryColor.cgColor
-        pulseAnimation.duration = 1
+        pulseAnimation.duration = SkeletonAppearance.default.pulseAnimationDuration
         pulseAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         pulseAnimation.autoreverses = true
         pulseAnimation.repeatCount = .infinity
